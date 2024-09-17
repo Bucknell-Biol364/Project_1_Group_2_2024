@@ -2,7 +2,6 @@
 
 ## Authors
 
-- Ken Field
 - Meiers Dixon
 
 
