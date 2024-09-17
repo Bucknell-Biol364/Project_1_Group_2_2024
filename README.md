@@ -3,6 +3,7 @@
 ## Authors
 
 - Meiers Dixon
+- Cristoph Klews
 
 
 ## Target Audience
