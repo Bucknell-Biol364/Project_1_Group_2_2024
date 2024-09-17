@@ -3,6 +3,8 @@
 ## Authors
 
 - Ashlyn Sak
+- Ken Field
+- Meiers Dixon
 
 ## Target Audience
 
