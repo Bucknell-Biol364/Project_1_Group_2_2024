@@ -1,0 +1,54 @@
+These are the instructions:
+
+```{r}
+# Load other packages here.
+if (!require("datasauRus")) install.packages("datasauRus"); library(datasauRus)
+if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+if (!require("UsingR")) install.packages("UsingR"); library(UsingR)
+if (!require("cowplot")) install.packages("cowplot"); library(cowplot)
+if (!require("car")) install.packages("car"); library(car) # Anova function for better lm summary stats
+if (!require("multcomp")) install.packages("multcomp"); library(multcomp) # glht function for Tukey test
+if (!require("emmeans")) install.packages("emmeans"); library(emmeans) # emmeans and pairs functions for post-hoc analysis
+if (!require("conflicted")) install.packages("conflicted"); library(conflicted) # For dealing with conflicts
+if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse) # For everything
+conflict_prefer_all("dplyr", quiet = TRUE)
+library(ggplot2)
+```
+
+
+```{r}
+datasaurus_dozen |> 
+  group_by(dataset) |> 
+  summarize(
+      mean_x    = mean(x),
+      mean_y    = mean(y),
+      std_dev_x = sd(x),
+      std_dev_y = sd(y),
+      corr_x_y  = cor(x, y)
+      )
+```
+
+```{r}
+datasaurus_dozen |>
+  ggplot(aes(x = x, colour = dataset)) +
+    geom_boxplot() +
+    theme_void() +
+    theme(legend.position = "none") +
+    facet_wrap(~dataset, ncol = 3)
+
+write.csv(datasaurus_dozen, file = "dinosaurus_dozen_unclean.csv")
+```
+
+```{r}
+datasaurus_dozen |>
+  ggplot(aes(x = y, colour = dataset))+
+    geom_boxplot()+
+    theme_void()+
+    theme(legend.position = "none")+
+    facet_wrap(~dataset, ncol = 3)
+```
+
+
+
