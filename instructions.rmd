@@ -2,7 +2,6 @@ These are the instructions:
 
 ```{r}
 # Load other packages here.
-if (!require("datasauRus")) install.packages("datasauRus"); library(datasauRus)
 if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
 
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,7 +18,9 @@ library(ggplot2)
 
 
 ```{r}
-datasaurus_dozen |> 
+
+Data <- read.csv("dinosaurus_dozen_cleab.csv")
+Data |> 
   group_by(dataset) |> 
   summarize(
       mean_x    = mean(x),

@@ -77,6 +77,87 @@ datasaurus_dozen |>
 Compare the means and standard deviations of the 13 different datasets.
 
 
+```{r}
+Dino <- datasaurus_dozen |>
+  filter(dataset == "dino")
+
+shapiro.test(Dino$x)
+shapiro.test(Dino$y)
+
+Away <- datasaurus_dozen |>
+  filter(dataset == "away")
+
+shapiro.test(Away$x)
+shapiro.test(Away$y)
+
+Bullseye <- datasaurus_dozen |>
+  filter(dataset == "bullseye")
+
+shapiro.test(Bullseye$x)
+shapiro.test(Bullseye$y)
+
+Circle <- datasaurus_dozen |>
+  filter(dataset == "circle")
+
+shapiro.test(Circle$x)
+shapiro.test(Circle$y)
+
+Dots <- datasaurus_dozen |>
+  filter(dataset == "dots")
+
+shapiro.test(Dots$x)
+shapiro.test(Dots$y)
+
+H_Lines <- datasaurus_dozen |>
+  filter(dataset == "h_lines")
+
+shapiro.test(H_Lines$x)
+shapiro.test(H_Lines$y)
+
+High_Lines <- datasaurus_dozen |>
+  filter(dataset == "high_lines")
+
+shapiro.test(High_Lines$x)
+shapiro.test(High_Lines$y)
+
+Slant_Up <- datasaurus_dozen |>
+  filter(dataset == "slant_up")
+
+shapiro.test(Slant_Up$x)
+shapiro.test(Slant_Up$y)
+
+Slant_Down <- datasaurus_dozen |>
+  filter(dataset == "slant_down")
+
+shapiro.test(Slant_Down$x)
+shapiro.test(Slant_Down$y)
+
+Star <- datasaurus_dozen |>
+  filter(dataset == "star")
+
+shapiro.test(Star$x)
+shapiro.test(Star$y)
+
+V_Lines <- datasaurus_dozen |>
+  filter(dataset == "v_lines")
+
+shapiro.test(V_Lines$x)
+shapiro.test(V_Lines$y)
+
+Wide_Lines <- datasaurus_dozen |>
+  filter(dataset == "wide_lines")
+
+shapiro.test(Wide_Lines$x)
+shapiro.test(Wide_Lines$y)
+
+X_Shape <- datasaurus_dozen |>
+  filter(dataset == "x_shape")
+
+shapiro.test(X_Shape$x)
+shapiro.test(X_Shape$y)
+```
+
+
 Boxplots of either the x or the y value show that there are some differences, even though the means and standard deviations are identical.
 
 ```{r}
@@ -95,6 +176,8 @@ datasaurus_dozen |>
     theme_void()+
     theme(legend.position = "none")+
     facet_wrap(~dataset, ncol = 3)
+
+
 ```
 
 But you have to visualize all of the data with a scatter plot to really see the patterns.
