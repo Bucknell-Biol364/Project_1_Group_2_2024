@@ -40,6 +40,84 @@ Data |>
       std_dev_y = sd(y),
       corr_x_y  = cor(x, y)
       )
+
+A <- Data |>
+  filter(dataset == "a")
+
+shapiro.test(A$x)
+shapiro.test(A$y)
+
+B <- Data |>
+  filter(dataset == "b")
+
+shapiro.test(B$x)
+shapiro.test(B$y)
+
+C <- Data |>
+  filter(dataset == "c")
+
+shapiro.test(C$x)
+shapiro.test(C$y)
+
+D <- Data |>
+  filter(dataset == "d")
+
+shapiro.test(D$x)
+shapiro.test(D$y)
+
+E <- Data |>
+  filter(dataset == "e")
+
+shapiro.test(E$x)
+shapiro.test(E$y)
+
+F <- Data |>
+  filter(dataset == "f")
+
+shapiro.test(F$x)
+shapiro.test(F$y)
+
+G <- Data |>
+  filter(dataset == "g")
+
+shapiro.test(G$x)
+shapiro.test(G$y)
+
+H <- Data |>
+  filter(dataset == "h")
+
+shapiro.test(H$x)
+shapiro.test(H$y)
+
+I <- Data |>
+  filter(dataset == "i")
+
+shapiro.test(I$x)
+shapiro.test(I$y)
+
+J <- Data |>
+  filter(dataset == "j")
+
+shapiro.test(J$x)
+shapiro.test(J$y)
+
+K <- Data |>
+  filter(dataset == "k")
+
+shapiro.test(K$x)
+shapiro.test(K$y)
+
+L <- Data |>
+  filter(dataset == "l")
+
+shapiro.test(L$x)
+shapiro.test(L$y)
+
+M <- Data |>
+  filter(dataset == "m")
+
+shapiro.test(M$x)
+shapiro.test(M$y)
 ```
 The table above shows statistics such as mean median, and standard deviation of the X and Y coordinates for each plot. Because we have shuffled the names of the plots, we can use this sort of information to identify the dinosaur plot.
 
