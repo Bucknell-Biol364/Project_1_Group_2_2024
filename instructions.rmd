@@ -32,82 +32,51 @@ Data |>
 
 A <- Data |>
   filter(dataset == "a")
-
-shapiro.test(A$x)
-shapiro.test(A$y)
-
 B <- Data |>
   filter(dataset == "b")
-
-shapiro.test(B$x)
-shapiro.test(B$y)
-
 C <- Data |>
   filter(dataset == "c")
-
-shapiro.test(C$x)
-shapiro.test(C$y)
-
 D <- Data |>
   filter(dataset == "d")
-
-shapiro.test(D$x)
-shapiro.test(D$y)
-
 E <- Data |>
   filter(dataset == "e")
-
-shapiro.test(E$x)
-shapiro.test(E$y)
-
 F <- Data |>
   filter(dataset == "f")
-
-shapiro.test(F$x)
-shapiro.test(F$y)
-
 G <- Data |>
   filter(dataset == "g")
-
-shapiro.test(G$x)
-shapiro.test(G$y)
-
 H <- Data |>
   filter(dataset == "h")
-
-shapiro.test(H$x)
-shapiro.test(H$y)
-
 I <- Data |>
   filter(dataset == "i")
-
-shapiro.test(I$x)
-shapiro.test(I$y)
-
 J <- Data |>
   filter(dataset == "j")
-
-shapiro.test(J$x)
-shapiro.test(J$y)
-
 K <- Data |>
   filter(dataset == "k")
-
-shapiro.test(K$x)
-shapiro.test(K$y)
-
 L <- Data |>
   filter(dataset == "l")
-
-shapiro.test(L$x)
-shapiro.test(L$y)
-
 M <- Data |>
   filter(dataset == "m")
 
+```
+
+
+In this section you have been given one example formula for generating a Wilkes-Shapiro test which is meant to test for normality. You are to run this test on every other dataset to determine which one is your target dataset. The target dataset has a P-value for it's Xs of 0.118 and a W value of 0.98479. for its Ys, 0.0001252 and 0.95449 respectively. What do these values tell you and why?
+
+```{r}
 shapiro.test(M$x)
 shapiro.test(M$y)
 ```
+
+
+Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
+```{r}
+Fglm = glm(X ~ x + y, data=F)
+summary(Fglm)
+BIC(Fglm)
+
+```
+
+
 
 ```{r}
 Data |>
