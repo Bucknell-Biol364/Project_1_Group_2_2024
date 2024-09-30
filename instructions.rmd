@@ -19,7 +19,7 @@ library(ggplot2)
 
 ```{r}
 
-Data <- read.csv("dinosaurus_dozen_cleab.csv")
+Data <- read.csv("dinosaurus_dozen_clean.csv")
 Data |> 
   group_by(dataset) |> 
   summarize(
@@ -32,18 +32,16 @@ Data |>
 ```
 
 ```{r}
-datasaurus_dozen |>
+Data |>
   ggplot(aes(x = x, colour = dataset)) +
     geom_boxplot() +
     theme_void() +
     theme(legend.position = "none") +
     facet_wrap(~dataset, ncol = 3)
-
-write.csv(datasaurus_dozen, file = "dinosaurus_dozen_unclean.csv")
 ```
 
 ```{r}
-datasaurus_dozen |>
+Data |>
   ggplot(aes(x = y, colour = dataset))+
     geom_boxplot()+
     theme_void()+
@@ -51,10 +49,54 @@ datasaurus_dozen |>
     facet_wrap(~dataset, ncol = 3)
 ```
 
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = x, color = dataset, fill = dataset) +
+  geom_histogram() +
+  facet_wrap(~dataset)+
+  theme_cowplot()
+```
+
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = y, color = dataset, fill = dataset) +
+  geom_histogram() +
+  facet_wrap(~dataset)+
+  theme_cowplot()
+```
 
 *Descriptions of statistical tests*
 Shapiro-Wilks test: this test is used to 
 
 
 
+
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = x,  fill = dataset) + 
+  geom_density(alpha=.3) +
+  facet_wrap(~dataset)
+  theme_cowplot()
+```
+
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = y,  fill = dataset) + 
+  geom_density(alpha=.3) +
+  facet_wrap(~dataset)
+  theme_cowplot()
+```
+
+```{r}
+Data |> 
+  ggplot(aes(x = x, y = y, colour = dataset))+
+    geom_point()+
+    theme_void()+
+    theme(legend.position = "none")+
+    facet_wrap(~dataset)
+```
 
