@@ -51,7 +51,6 @@ Data |>
 
 ```{r}
 Data |> 
-  group_by(dataset) |> 
   ggplot() +
   aes(x = x, color = dataset, fill = dataset) +
   geom_histogram() +
@@ -61,9 +60,8 @@ Data |>
 
 ```{r}
 Data |> 
-  group_by(dataset) |> 
   ggplot() +
-  aes(y = y, color = dataset, fill = dataset) +
+  aes(x = y, color = dataset, fill = dataset) +
   geom_histogram() +
   facet_wrap(~dataset)+
   theme_cowplot()
@@ -82,7 +80,7 @@ Data |>
 ```{r}
 Data |> 
   ggplot() +
-  aes(y = y,  fill = dataset) + 
+  aes(x = y,  fill = dataset) + 
   geom_density(alpha=.3) +
   facet_wrap(~dataset)
   theme_cowplot()
