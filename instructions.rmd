@@ -200,6 +200,7 @@ shapiro.test(M$x)
 shapiro.test(M$y)
 ```
 
+<<<<<<< HEAD
 Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values which tests for the relative success of the model in explaining the relationship between a response variable and one or more explanatory variables, a lower number being more desirable. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things in a similar but subtly different way. It is important to remember that these values can only be compared to each other if you're testing from within the same dataset using different explanatory variables. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of -18.276 and a BIC of -6.452445.
 ```{r}
 Fglm = glm((y/x) ~ x + y, data=F) #This forms the model as a query to the correlative relationship of (y/x) to x and y
