@@ -221,7 +221,7 @@ How do these models change if you only have one explanatory variable? Why?
 
 ## Conclusion
 
-After looking at the plots and statistical test, what dataset do you think is the dinosaur?
+After looking at the plots and statistical test, what dataset do you think is the dinosaur? What lead you to this conclusion and what does that say about the data?
 
 Running the following code chunk will generate a scatter plot that shows the design of each dataset. This will reveal which dataset is the dinosaur.
 
