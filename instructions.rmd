@@ -14,6 +14,9 @@ if (!require("cowplot")) install.packages("cowplot"); library(cowplot)
 if (!require("car")) install.packages("car"); library(car) # Anova function for better lm summary stats
 if (!require("conflicted")) install.packages("conflicted"); library(conflicted) # For dealing with conflicts
 if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse) # For everything
+if (!require("png")) install.packages("png"); library(png) # For everything
+if (!require("ggplot2")) install.packages("ggplot2"); library(ggplot2) # For everything
+
 conflict_prefer_all("dplyr", quiet = TRUE)
 library(ggplot2)
 ```
@@ -22,6 +25,16 @@ library(ggplot2)
 Now that we have installed packages, we can visualize all of our plots from the datasaurus dataset. As you can see, the dataset has a variety of different types of plots. We have circular plots, linear plots, and ones with cool shapes. We will be going through our dataset to narrow down the possible types of plots until we have eliminated all but the dinosaur plot.
 
 ![plots](./image_of_plots.png)
+
+```{r, fig.width=10, fig.height=20}
+img <- "./image_of_plots.png"  %>%
+  readPNG()
+
+# Create a plot
+plot(1:2, type = "n", xlab = "", ylab = "", axes = FALSE, ylim = c(1, 20))  # Set up empty plot
+rasterImage(img, 1, 1, 2, 20)  # Draw the image in the plot area
+```
+
 
 ### Examining the summary of our data
 Lets take a look at Summary of the different types of plots in our dataset. 
