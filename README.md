@@ -22,7 +22,7 @@ how different plots and tests can be used to represent a variety of different da
   b) Modify axes labels and colors of plots
   
 2) Use and interpret statistical tests effectively
-  a) Identify which tests are appropriate for different datasets, based on sample size and normality
+  a) Identify which tests are apporpriate for different datasets, based on sample size and normality
   b) Interpret results of statistical tests, including p-values
   
 3) Compare statistical tests to draw conclusions about different datasets
