@@ -1,9 +1,14 @@
-These are the instructions:
+## Dinosaurus Data
+
+Hello everyone, the goal of this tutorial is to find the dataset that plots a dinosaur. Although the goal is to find the dinosaur, you will learn how to interpret and edit graphs and statistical tests to show the data you need.
+
+## Loading Packages
+Before we begin, we must load in our packages to help us make our plots. Please copy this code so that you can make the same plots as us as well.
 
 ```{r}
 # Load other packages here.
 if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
-
+options(warn = -1)
 knitr::opts_chunk$set(echo = TRUE)
 if (!require("UsingR")) install.packages("UsingR"); library(UsingR)
 if (!require("cowplot")) install.packages("cowplot"); library(cowplot)
@@ -16,7 +21,13 @@ conflict_prefer_all("dplyr", quiet = TRUE)
 library(ggplot2)
 ```
 
+### Plot visualization
+Now that we have installed packages, we can visualize all of our plots from the datasaurus dataset. As you can see, the dataset has a variety of different types of plots. We have circular plots, linear plots, and ones with cool shapes. We will be going through our dataset to narrow down the possible types of plots until we have eliminated all but the dinosaur plot.
 
+![plots](./image_of_plots.png)
+
+### Examining the summary of our data
+Lets take a look at Summary of the different types of plots in our dataset. 
 ```{r}
 
 Data <- read.csv("dinosaurus_dozen_clean.csv")
@@ -30,13 +41,48 @@ Data |>
       corr_x_y  = cor(x, y)
       )
 ```
-First, we are going to visualize the data. We will start by making a box plot for "x" variables with the following code.
+
+So we can easily visualize each dataset, we will create a new dataframe from each dataset. The code below shows you how to create a new dataframe for dataset "A". Use the same code to create dataframes for the rest of the datasets. 
+
 ```{r}
-Data |>
-  ggplot(aes(x = x)) +
-    geom_boxplot() +
-    theme_void() +
-    theme(legend.position = "none")
+A <- Data |>
+  filter(dataset == "a")
+B <- Data |>
+  filter(dataset == "b")
+C <- Data |>
+  filter(dataset == "c")
+D <- Data |>
+  filter(dataset == "d")
+E <- Data |>
+  filter(dataset == "e")
+F <- Data |>
+  filter(dataset == "f")
+G <- Data |>
+  filter(dataset == "g")
+H <- Data |>
+  filter(dataset == "h")
+I <- Data |>
+  filter(dataset == "i")
+J <- Data |>
+  filter(dataset == "j")
+K <- Data |>
+  filter(dataset == "k")
+L <- Data |>
+  filter(dataset == "l")
+M <- Data |>
+  filter(dataset == "m")
+```
+
+## Box Plots
+
+First, we are going to visualize the data. We will start by making a box plot for "x" variables with the following code. The # removes the text from the code. This is included to tell you what each line of code does. Ideally, you should not have this in your code.
+
+```{r}
+Data |> # selects dataframe you want to apply to following code to
+  ggplot(aes(x = x)) + # ggplot is the package we want to use and aes() selects variables to plot
+    geom_boxplot() + # we want to create a boxplot
+    theme_void() + # the type of theme we want to use because there is little data ink and extra noise
+    theme(legend.position = "none") # we do not want a legend
 ```
 
 What are some issues with this boxplot?
@@ -45,6 +91,7 @@ What are some issues with this boxplot?
 
 We can add color in the aes() function as seen below.
 Additionally, we can split the boxplot up by dataset using facet_wrap().
+
 ```{r}
 Data |>
   ggplot(aes(x = x, colour = dataset)) +
@@ -53,8 +100,16 @@ Data |>
     theme(legend.position = "none") +
     facet_wrap(~dataset, ncol = 3)
 ```
+This looks much better and helps us visualize each individual dataset.
 
-This looks much better and helps us visualize each individual dataset. Now create the same boxplots for the y variables.
+How do we interpret these plots? 
+  This data will show us if our data is normally distributed. The middle line in each of these boxes represents the median, while the ends of the boxes represent the 1st and 3rd quartile.
+  The ends of the whiskers represent the our 95% intervals. This means 95% of our data will fall in between these whiskers, unless we have some outliers. 
+  We can see that "d", "e", "h", and "m" are all skewed, as their medians are quite close to their 1st or 3rd quartile respectively. In normally distributed data, our median should fall in the middle of the box and our whiskers should be even lengths.
+
+
+Now lets create the same plots for the y variable.
+
 ```{r}
 Data |>
   ggplot(aes(x = y, colour = dataset))+
@@ -63,26 +118,71 @@ Data |>
     theme(legend.position = "none")+
     facet_wrap(~dataset, ncol = 3)
 ```
+This data shows us the distribution of points along the y-axis for each plot. You can see that there is a difference between these plots and those previously, as far fewer of them are skewed. This tells us that a dataset can be normal in one variable but not another.
 
+## Hypothesis
 
+Based on what we know about the dinosaur dataset and its distribution, can we rule out any datasets that could not be the dinosaur? 
+
+Which dataset do you think is the dinosaur? Write down your hypothesis. It is okay if you do not know, you should always formulate your hypothesis before running tests anyways. 
+
+## Histograms
+### X-axis
+
+Now we are going to create different types of plots called histograms. We can use similar code as the boxplots. We will use a different theme here because it is important to show the x and y axis for this plot.
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = x, fill = dataset) +
+  geom_histogram() + # selects histogram as plot
+  facet_wrap(~dataset)+
+  theme_cowplot() + # uses cowplot theme 
+  theme(legend.position = "none")
+```
+### Y-axis
 
 ```{r}
 Data |> 
   ggplot() +
-  aes(x = x, color = dataset, fill = dataset) +
+  aes(x = y, fill = dataset) +
   geom_histogram() +
   facet_wrap(~dataset)+
-  theme_cowplot()
+  theme_cowplot()+
+  theme(legend.position = "none")
 ```
 
+### Analysis
+Historgrams are a type of plot that can be used to visualize the distribution of data. Rather than only displaying statistics such as min, max, mean, 1st quartile and 3rd quartile, historgrams bin data based on smaller ranges. This allows us to pick up on things such as modes. In this case, "e", "g", "m" and "i" are bimodal, and "d", "f", "h", and "j" are multi modal. 
+
+=======
+
+In this section you have been given one example formula for generating a Wilkes-Shapiro test which is meant to test for normality. You are to run this test on every other dataset to determine which one is your target dataset. The target dataset has a P-value for it's Xs of 0.118 and a W value of 0.98479. for its Ys, 0.0001252 and 0.95449 respectively. What do these values tell you and why?
+
 ```{r}
-Data |> 
-  ggplot() +
-  aes(x = y, color = dataset, fill = dataset) +
-  geom_histogram() +
-  facet_wrap(~dataset)+
-  theme_cowplot()
+shapiro.test(M$x)
+shapiro.test(M$y)
 ```
+The table above shows statistics such as mean median, and standard deviation of the X and Y coordinates for each plot. Because we have shuffled the names of the plots, we can use this sort of information to identify the dinosaur plot.
+
+<<<<<<< HEAD
+
+Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
+```{r}
+Fglm = glm(X ~ x + y, data=F)
+summary(Fglm)
+BIC(Fglm)
+
+```
+
+
+
+=======
+
+
+*Descriptions of statistical tests*
+Shapiro-Wilks test: this test is used to 
+
+
 
 
 ```{r}
