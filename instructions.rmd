@@ -37,7 +37,13 @@ Data |>
       corr_x_y  = cor(x, y))
 ```
 As we can see from the summary, each dataset has pretty much the same mean standard deviation for both x and y, and the same x-y correlation. So we will have find other distinct characteristics of the dinosaur dataset. 
-*HERE WE SHOULD INCLUDE INFO ABOUT DINO (normal distribution, min and max values)*
+
+##Hint
+ 
+As you can see from the scatter plots above, there are no gaps in our x and y-values for our dinosaur. Additionally, the x-values of our dinosaur are normally distributed while our y-values are not.
+The x variable has a minimum of 22.3 and a maximum of 98.2 and the y variable has a minimum of 2.9 and a maximum of 99.4.
+
+## Create Separate Dataframes
 
 So we can easily visualize each dataset, we will create a new dataframe from each dataset. The code below shows you how to create a new dataframe for dataset "A". Use the same code to create dataframes for the rest of the datasets. Make sure the name of each lettered dataset is a capital version of the letter of the dataset (i.e. A is associated with"a", B with "b").
 
