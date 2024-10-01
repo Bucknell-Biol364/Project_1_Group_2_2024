@@ -160,15 +160,20 @@ Can we rule out any additional datasets after looking at these histograms?
 ## Density Plots
 
 We will create one more type of plot called density plots. 
+Density plots are similar to histograms in that it plots the distribution of values. However, histograms shows the number of values in each bin, whereas density plots show the proportion of values in each range.
+You can conclude similar things from each plot, but sometimes it is easier to visualize peaks and valleys in the data on a density plot.
 
+Run the following code chunk for the x variable.
 ```{r}
 Data |> 
   ggplot() +
   aes(x = x,  fill = dataset) + 
-  geom_density(alpha=.3) +
+  geom_density(alpha=.3) + # creates a density plot
   facet_wrap(~dataset)+
   theme_cowplot()
 ```
+
+Use the same code above but modify it to create plots for the y variable.
 
 ```{r}
 Data |> 
