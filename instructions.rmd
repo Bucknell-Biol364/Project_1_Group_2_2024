@@ -7,14 +7,11 @@ Before we begin, we must load in our packages to help us make our plots. Please 
 
 ```{r}
 # Load other packages here.
-if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
 options(warn = -1)
 knitr::opts_chunk$set(echo = TRUE)
 if (!require("UsingR")) install.packages("UsingR"); library(UsingR)
 if (!require("cowplot")) install.packages("cowplot"); library(cowplot)
 if (!require("car")) install.packages("car"); library(car) # Anova function for better lm summary stats
-if (!require("multcomp")) install.packages("multcomp"); library(multcomp) # glht function for Tukey test
-if (!require("emmeans")) install.packages("emmeans"); library(emmeans) # emmeans and pairs functions for post-hoc analysis
 if (!require("conflicted")) install.packages("conflicted"); library(conflicted) # For dealing with conflicts
 if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse) # For everything
 conflict_prefer_all("dplyr", quiet = TRUE)
@@ -29,7 +26,6 @@ Now that we have installed packages, we can visualize all of our plots from the 
 ### Examining the summary of our data
 Lets take a look at Summary of the different types of plots in our dataset. 
 ```{r}
-
 Data <- read.csv("dinosaurus_dozen_clean.csv")
 Data |> 
   group_by(dataset) |> 
@@ -38,9 +34,10 @@ Data |>
       mean_y    = mean(y),
       std_dev_x = sd(x),
       std_dev_y = sd(y),
-      corr_x_y  = cor(x, y)
-      )
+      corr_x_y  = cor(x, y))
 ```
+As we can see from the summary, each dataset has pretty much the same mean standard deviation for both x and y, and the same x-y correlation. So we will have find other distinct characteristics of the dinosaur dataset. 
+*HERE WE SHOULD INCLUDE INFO ABOUT DINO (normal distribution, min and max values)*
 
 So we can easily visualize each dataset, we will create a new dataframe from each dataset. The code below shows you how to create a new dataframe for dataset "A". Use the same code to create dataframes for the rest of the datasets. 
 
@@ -78,35 +75,33 @@ M <- Data |>
 First, we are going to visualize the data. We will start by making a box plot for "x" variables with the following code. The # removes the text from the code. This is included to tell you what each line of code does. Ideally, you should not have this in your code.
 
 ```{r}
-Data |> # selects dataframe you want to apply to following code to
-  ggplot(aes(x = x)) + # ggplot is the package we want to use and aes() selects variables to plot
+Data |> # selects dataframe you want to apply the following code to
+  ggplot(aes(x = x)) + # ggplot is the package, aes() selects variables to plot
     geom_boxplot() + # we want to create a boxplot
-    theme_void() + # the type of theme we want to use because there is little data ink and extra noise
-    theme(legend.position = "none") # we do not want a legend
+    theme_void() # selects void theme for the plot
 ```
 
 What are some issues with this boxplot?
 1. All x values are plotted together instead of by dataset
 2. No color
 
-We can add color in the aes() function as seen below.
-Additionally, we can split the boxplot up by dataset using facet_wrap().
+We will use the following code to make these changes.
 
 ```{r}
 Data |>
-  ggplot(aes(x = x, colour = dataset)) +
+  ggplot(aes(x = x, colour = dataset)) + # "colour" color codes values by dataset
     geom_boxplot() +
     theme_void() +
-    theme(legend.position = "none") +
-    facet_wrap(~dataset, ncol = 3)
+    theme(legend.position = "none") + # removes legend
+    facet_wrap(~dataset, ncol = 3) # creates separate plots for each dataset, ncol creates 3 columns
 ```
 This looks much better and helps us visualize each individual dataset.
 
 How do we interpret these plots? 
-  This data will show us if our data is normally distributed. The middle line in each of these boxes represents the median, while the ends of the boxes represent the 1st and 3rd quartile.
+  This data will show us if our data is normally distributed. The middle line in each of these boxes represents the median, while the ends of the boxes represent the 1st and 3rd quartile. This shows where 50% of our data falls
   The ends of the whiskers represent the our 95% intervals. This means 95% of our data will fall in between these whiskers, unless we have some outliers. 
   We can see that "d", "e", "h", and "m" are all skewed, as their medians are quite close to their 1st or 3rd quartile respectively. In normally distributed data, our median should fall in the middle of the box and our whiskers should be even lengths.
-
+  It might be harder to notice, but "a" is skewed, not by median but by the 50%. We can see that we have an outlier that is causing our upper whisker to be longer than the lower whisker. 
 
 Now lets create the same plots for the y variable.
 
@@ -129,7 +124,10 @@ Which dataset do you think is the dinosaur? Write down your hypothesis. It is ok
 ## Histograms
 ### X-axis
 
-Now we are going to create different types of plots called histograms. We can use similar code as the boxplots. We will use a different theme here because it is important to show the x and y axis for this plot.
+Now we are going to create different types of plots called histograms.Histograms are a type of plot that can be used to visualize the distribution of data.
+Rather than only displaying statistics such as min, max, mean, 1st quartile and 3rd quartile, histograms shows all the data in bins. Bins group similar values together and shows the count of values in each bin. This allows us to pick up on things such as modes.
+
+We can use similar code as the boxplots. We will use a different theme here because it is important to show the x and y axis for this plot.
 ```{r}
 Data |> 
   ggplot() +
@@ -139,6 +137,11 @@ Data |>
   theme_cowplot() + # uses cowplot theme 
   theme(legend.position = "none")
 ```
+
+Looking at the histograms for the x variable, we can see in some groups, there are multiple spikes in count at different values, having two spikes is bimodal and multiple spikes is multimodal. For other groups, the data looks more uniform and only has one spike, the is unimodal.
+
+We can also use this to visualize gaps in the data. Are there gaps in the x values of our dinosaur?
+
 ### Y-axis
 
 ```{r}
@@ -151,20 +154,44 @@ Data |>
   theme(legend.position = "none")
 ```
 
-### Analysis
-Historgrams are a type of plot that can be used to visualize the distribution of data. Rather than only displaying statistics such as min, max, mean, 1st quartile and 3rd quartile, historgrams bin data based on smaller ranges. This allows us to pick up on things such as modes. In this case, "e", "g", "m" and "i" are bimodal, and "d", "f", "h", and "j" are multi modal. 
+Take a look at the histograms plotting the y variable for each dataset Which datasets are unimodal, bimodal, and multimodal? What category best described the y variable for our dinosuar?
+Can we rule out any additional datasets after looking at these histograms? 
 
-=======
+## Density Plots
 
-In this section you have been given one example formula for generating a Wilkes-Shapiro test which is meant to test for normality. You are to run this test on every other dataset to determine which one is your target dataset. The target dataset has a P-value for it's Xs of 0.118 and a W value of 0.98479. for its Ys, 0.0001252 and 0.95449 respectively. What do these values tell you and why?
+We will create one more type of plot called density plots. 
+
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = x,  fill = dataset) + 
+  geom_density(alpha=.3) +
+  facet_wrap(~dataset)+
+  theme_cowplot()
+```
+
+```{r}
+Data |> 
+  ggplot() +
+  aes(x = y,  fill = dataset) + 
+  geom_density(alpha=.3) +
+  facet_wrap(~dataset) +
+  theme_cowplot()
+```
+
+## Testing normality
+
+Now that we have visualized the data, lets run some statistical tests. Sometimes these tests can confirm what we already know from the visualization, and other times its hard to conclude what our visualization is showing. These tests can help clarify this.
+
+In this section you have been given one example formula for generating a Wilkes-Shapiro test which is meant to test for normality. You are to run this test on every other dataset to determine which one is your target dataset. 
+Interpretting the results of a Wilkes-Shapiro test can be tricky. In most statistical test, we want a p-value less than 0.05 to determine signifance. However, in a Wilkes-Shapiro test, a p-value greater than 0.05 means the data is normally distributed. 
+
+The target dataset has a P-value for it's Xs of 0.118 and a W value of 0.98479. for its Ys, 0.0001252 and 0.95449 respectively. What do these values tell you and why?
 
 ```{r}
 shapiro.test(M$x)
 shapiro.test(M$y)
 ```
-The table above shows statistics such as mean median, and standard deviation of the X and Y coordinates for each plot. Because we have shuffled the names of the plots, we can use this sort of information to identify the dinosaur plot.
-
-<<<<<<< HEAD
 
 Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
 ```{r}
@@ -174,34 +201,11 @@ BIC(Fglm)
 
 ```
 
+## Conclusion
 
+After looking at the plots and statistical test, what dataset do you think is the dinosaur?
 
-=======
-
-
-*Descriptions of statistical tests*
-Shapiro-Wilks test: this test is used to 
-
-
-
-
-```{r}
-Data |> 
-  ggplot() +
-  aes(x = x,  fill = dataset) + 
-  geom_density(alpha=.3) +
-  facet_wrap(~dataset)
-  theme_cowplot()
-```
-
-```{r}
-Data |> 
-  ggplot() +
-  aes(x = y,  fill = dataset) + 
-  geom_density(alpha=.3) +
-  facet_wrap(~dataset)
-  theme_cowplot()
-```
+Running the following code chunk will generate a scatter plot that shows the design of each dataset. This will reveal which dataset is the dinosaur.
 
 ```{r}
 Data |> 
