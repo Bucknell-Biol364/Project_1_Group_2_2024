@@ -30,7 +30,21 @@ Data |>
       corr_x_y  = cor(x, y)
       )
 ```
+First, we are going to visualize the data. We will start by making a box plot for "x" variables with the following code.
+```{r}
+Data |>
+  ggplot(aes(x = x)) +
+    geom_boxplot() +
+    theme_void() +
+    theme(legend.position = "none")
+```
 
+What are some issues with this boxplot?
+1. All x values are plotted together instead of by dataset
+2. No color
+
+We can add color in the aes() function as seen below.
+Additionally, we can split the boxplot up by dataset using facet_wrap().
 ```{r}
 Data |>
   ggplot(aes(x = x, colour = dataset)) +
@@ -40,6 +54,7 @@ Data |>
     facet_wrap(~dataset, ncol = 3)
 ```
 
+This looks much better and helps us visualize each individual dataset. Now create the same boxplots for the y variables.
 ```{r}
 Data |>
   ggplot(aes(x = y, colour = dataset))+
@@ -48,6 +63,8 @@ Data |>
     theme(legend.position = "none")+
     facet_wrap(~dataset, ncol = 3)
 ```
+
+
 
 ```{r}
 Data |> 
