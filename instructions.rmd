@@ -74,27 +74,13 @@ M <- Data |>
 
 First, we are going to visualize the data. We will start by making a box plot for "x" variables with the following code. The # removes the text from the code. This is included to tell you what each line of code does. Ideally, you should not have this in your code.
 
-```{r}
-<<<<<<< HEAD
-shapiro.test(M$x)
-shapiro.test(M$y)
-```
 The table above shows statistics such as mean median, and standard deviation of the X and Y coordinates for each plot. Because we have shuffled the names of the plots, we can use this sort of information to identify the dinosaur plot.
 
-<<<<<<< HEAD
-
-Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values which tests for the relative success of the model in explaining the relationship between a response variable and one or more explanatory variables. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things in a similar but subtley different way. It is important to remember that these values can only be compared to each other if you're testing from within the same dataset using different explanatory variables. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
 ```{r}
-Fglm = glm(X ~ x + y, data=F)
-summary(Fglm)
-BIC(Fglm)
-
-=======
 Data |> # selects dataframe you want to apply the following code to
   ggplot(aes(x = x)) + # ggplot is the package, aes() selects variables to plot
     geom_boxplot() + # we want to create a boxplot
     theme_void() # selects void theme for the plot
->>>>>>> 3ec579c0e3c4be7a1f2b230574f53f9fc511b19d
 ```
 
 What are some issues with this boxplot?
@@ -214,13 +200,17 @@ shapiro.test(M$x)
 shapiro.test(M$y)
 ```
 
-Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
+Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values which tests for the relative success of the model in explaining the relationship between a response variable and one or more explanatory variables. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things in a similar but subtly different way. It is important to remember that these values can only be compared to each other if you're testing from within the same dataset using different explanatory variables. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
 ```{r}
-Fglm = glm(X ~ x + y, data=F)
-summary(Fglm)
-BIC(Fglm)
+Fglm = glm(X ~ x + y, data=F) #This forms the model as a query to the correlative relationship of X to x and y
+summary(Fglm) #This gives us a readout of that model we generated
+BIC(Fglm) #This runs a Bayesian Information Criterion test on that model.
 
 ```
+Which model do you think is the dataset?
+
+How do these models change if you only have one explanatory variable? Why?
+
 
 ## Conclusion
 
