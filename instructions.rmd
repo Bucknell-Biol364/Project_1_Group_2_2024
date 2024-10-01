@@ -81,7 +81,7 @@ The table above shows statistics such as mean median, and standard deviation of 
 
 <<<<<<< HEAD
 
-Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
+Let's try generalized linear modeling, this will tell you the Akaike Information Criterion values which tests for the relative success of the model in explaining the relationship between a response variable and one or more explanatory variables. We will also run a Bayesian Information Criterion formula on the same linear model which tests the same things in a similar but subtley different way. It is important to remember that these values can only be compared to each other if you're testing from within the same dataset using different explanatory variables. You have been given one formula as an example, and now you have to run the same for the other datasets. Your target dataset has an AIC of 1383 and a BIC of 1394.847
 ```{r}
 Fglm = glm(X ~ x + y, data=F)
 summary(Fglm)
