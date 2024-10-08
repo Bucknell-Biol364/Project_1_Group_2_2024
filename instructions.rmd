@@ -228,8 +228,8 @@ In this section we will run Wilkes-Shapiro tests which test how normally distrib
 We have provided an example of the code for dataset 'M'. Now you try running the same code for the rest of the datasets.
 
 ```{r}
-shapiro.test(M$x)
-shapiro.test(M$y)
+shapiro.test(M$x) #Test for normality of the x variable in dataset M
+shapiro.test(M$y) #Test for normality of the y variable in dataset M
 ```
 
 ## Models
@@ -266,5 +266,4 @@ Data |>
 Were you right? If not, what mislead you?
 
 ## References
-
-ChatGPT - ""
+ChatGPT - "https://chatgpt.com/c/66fc2c4d-71a0-800d-8cbc-1ae9a48dffb0"
