@@ -172,7 +172,9 @@ Data |>
   geom_histogram() + # selects histogram as plot
   facet_wrap(~dataset)+
   theme_cowplot() + # uses cowplot theme 
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  xlab("X variable") + #changes x axis label
+  ylab("Count") #changes y axis label
 ```
 
 Looking at the histograms for the x variable, we can see in some groups, there are multiple spikes in count at different values, having two spikes is bimodal and multiple spikes is multimodal. For other groups, the data looks more uniform and only has one spike, the is unimodal.
@@ -188,7 +190,9 @@ Data |>
   geom_histogram() +
   facet_wrap(~dataset)+
   theme_cowplot()+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  xlab("Y Variable")+
+  ylab("Count")
 ```
 
 *Take a look at the histograms plotting the y variable for each dataset Which datasets are unimodal, bimodal, and multimodal? What category best described the y variable for our dinosaur?*
@@ -207,7 +211,10 @@ Data |>
   aes(x = x,  fill = dataset) + 
   geom_density(alpha=.3) + # creates a density plot
   facet_wrap(~dataset)+
-  theme_cowplot()
+  theme_cowplot()+
+  theme(legend.position = "none")+
+  xlab("X Variable")+
+  ylab("Density")
 ```
 
 Use the same code above but modify it to create plots for the y variable.
@@ -218,7 +225,10 @@ Data |>
   aes(x = y,  fill = dataset) + 
   geom_density(alpha=.3) +
   facet_wrap(~dataset) +
-  theme_cowplot()
+  theme_cowplot()+
+  theme(legend.position = "none")+
+  xlab("Y variable")+
+  ylab("Density")
 ```
 
 ## Testing normality

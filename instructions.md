@@ -71,7 +71,7 @@ if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse) # F
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
     ## ✔ purrr     1.0.2
 
@@ -296,7 +296,9 @@ Data |>
   geom_histogram() + # selects histogram as plot
   facet_wrap(~dataset)+
   theme_cowplot() + # uses cowplot theme 
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  xlab("X variable") + #changes x axis label
+  ylab("Count") #changes y axis label
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -320,7 +322,9 @@ Data |>
   geom_histogram() +
   facet_wrap(~dataset)+
   theme_cowplot()+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  xlab("Y Variable")+
+  ylab("Count")
 ```
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -349,7 +353,10 @@ Data |>
   aes(x = x,  fill = dataset) + 
   geom_density(alpha=.3) + # creates a density plot
   facet_wrap(~dataset)+
-  theme_cowplot()
+  theme_cowplot()+
+  theme(legend.position = "none")+
+  xlab("X Variable")+
+  ylab("Density")
 ```
 
 ![](instructions_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
@@ -363,7 +370,10 @@ Data |>
   aes(x = y,  fill = dataset) + 
   geom_density(alpha=.3) +
   facet_wrap(~dataset) +
-  theme_cowplot()
+  theme_cowplot()+
+  theme(legend.position = "none")+
+  xlab("Y variable")+
+  ylab("Density")
 ```
 
 ![](instructions_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
@@ -427,10 +437,6 @@ summary(Fglm) #This gives us a readout of that model we generated
     ## 
     ## Call:
     ## glm(formula = (y/x) ~ x + y, data = F)
-    ## 
-    ## Deviance Residuals: 
-    ##     Min       1Q   Median       3Q      Max  
-    ## -0.2979  -0.1564  -0.1042   0.2287   0.5333  
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)    
