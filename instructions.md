@@ -429,6 +429,16 @@ given one formula as an example, and now you have to run the same for
 the other datasets. Your target dataset has an AIC of -18.276 and a BIC
 of -6.452445.
 
+This code chunk also includes the code to create a Q_Q Residual Plot
+along with a diagonal Q_Q line. This is meant to show the distribution
+of the residuals of the linear model, which can be compared to this
+diagonal line to determine the normality of the distribution of the
+data. If the data points closely follow the line and maintain a
+similarly straight distribution, then the data can be considered to
+likely be normal. However, if it significantly deviates from the line or
+is not a straight line, then it can be considered to likely be
+non-normal.
+
 ``` r
 Fglm = glm((y/x) ~ x + y, data = F) #This forms the model as a query to the correlative relationship of (y/x) to x and y
 summary(Fglm) #This gives us a readout of that model we generated
@@ -461,10 +471,10 @@ BIC(Fglm) #This runs a Bayesian Information Criterion test on that model.
     ## [1] 1.446249
 
 ``` r
-plot(Fglm)
+plot(qqnorm(residuals(Fglm)),qqline(residuals(Fglm))) #This creates a Q_Q residual plot of the linear model to represent data normality.
 ```
 
-![](instructions_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->![](instructions_files/figure-gfm/unnamed-chunk-13-2.png)<!-- -->![](instructions_files/figure-gfm/unnamed-chunk-13-3.png)<!-- -->![](instructions_files/figure-gfm/unnamed-chunk-13-4.png)<!-- -->
+![](instructions_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->![](instructions_files/figure-gfm/unnamed-chunk-13-2.png)<!-- -->
 *Which model do you think is the dataset?*
 
 *How do these models change if you only have one explanatory variable?
