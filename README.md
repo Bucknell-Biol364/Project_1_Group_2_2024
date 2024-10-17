@@ -12,7 +12,11 @@ Target audience would be for undergraduate and graduate students trying to find
 how different plots and tests can be used to represent a variety of different datasets
 
 ## Instructions
+1) Open the Tutorial folder within this repository.
 
+2) Open the instructions.rmd file in that folder, this is the tutorial program.
+
+3) Follow the instructions within the tutorial.
 
 
 ## Objectives
