@@ -71,7 +71,7 @@ if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse) # F
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
     ## ✔ purrr     1.0.2
 
@@ -98,7 +98,7 @@ dinosaur plot. You do not need to know the following code chunk for this
 tutorial.
 
 ``` r
-img <- "./image_of_plots.png"  %>%
+img <- "../images/image_of_plots.png"  %>%
   readPNG()
 
 # Create a plot
@@ -119,7 +119,7 @@ between x and y. We want to find the summary for each dataset, so we
 will use group_by().
 
 ``` r
-Data <- read.csv("datasaurus_data.csv")
+Data <- read.csv("../data/datasaurus_data.csv")
 Data |> 
   group_by(dataset) |> 
   summarize(
@@ -447,6 +447,10 @@ summary(Fglm) #This gives us a readout of that model we generated
     ## 
     ## Call:
     ## glm(formula = (y/x) ~ x + y, data = F)
+    ## 
+    ## Deviance Residuals: 
+    ##     Min       1Q   Median       3Q      Max  
+    ## -0.2979  -0.1564  -0.1042   0.2287   0.5333  
     ## 
     ## Coefficients:
     ##               Estimate Std. Error t value Pr(>|t|)    

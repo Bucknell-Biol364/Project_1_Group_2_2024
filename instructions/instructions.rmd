@@ -42,7 +42,7 @@ conflict_prefer_all("dplyr", quiet = TRUE)
 Now that we have installed packages, we can visualize all of our plots from the datasaurus dataset. As you can see, the dataset has a variety of different types of plots. We have circular plots, linear plots, and ones with cool shapes. We will be going through our dataset to narrow down the possible types of plots until we have eliminated all but the dinosaur plot. You do not need to know the following code chunk for this tutorial.
 
 ```{r, fig.width=10, fig.height=20}
-img <- "./image_of_plots.png"  %>%
+img <- "../images/image_of_plots.png"  %>%
   readPNG()
 
 # Create a plot
@@ -55,7 +55,7 @@ rasterImage(img, 1, 1, 2, 20)  # Draw the image in the plot area
 Before we begin, we have to load in our data using read.csv and assign this dataset to the dataframe title "Data". This will make it easier to use in our code throughout the tutorial.
 Once the data is loaded in, we can look at the summary of our data. We use summarize() to find the mean of x and y, the standard deviation of x and y, and the correlation between x and y. We want to find the summary for each dataset, so we will use group_by(). 
 ```{r}
-Data <- read.csv("datasaurus_data.csv")
+Data <- read.csv("../data/datasaurus_data.csv")
 Data |> 
   group_by(dataset) |> 
   summarize(
